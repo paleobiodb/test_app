@@ -1,0 +1,32 @@
+# 
+# CSS file for the PBDB web application "test.html"
+# 
+
+.datatable td,th {
+    padding: 5px;
+    border: 1px solid black;
+    vertical-align: top;
+    font: Helvetica;
+}
+
+.valuetable td {
+    padding: 5px;
+    border: 0px;
+    vertical-align: top;
+}
+
+.code {
+    font-family: monospace;
+}
+
+.value {
+    font-family: monospace;
+}
+
+.example {
+    font-family: monospace;
+}
+
+.desc {
+    font-style: italic;
+}

@@ -1,0 +1,201 @@
+<!-- REQUIRES_LOGIN=0; -->
+<!-- This web form provides documentation about how to write PBDB web -->
+<!-- apps, and about the available variables. -->
+<!-- Author: Michael McClennen -->
+
+<style>
+.datatable td,th {
+    padding: 5px;
+    border: 1px solid black;
+    vertical-align: top;
+    font: Helvetica;
+}
+
+.valuetable td {
+    padding: 5px;
+    border: 0px;
+    vertical-align: top;
+}
+
+.code {
+    font-family: monospace;
+}
+
+.value {
+    font-family: monospace;
+}
+
+.example {
+    font-family: monospace;
+}
+
+.desc {
+    font-style: italic;
+}
+
+</style>
+
+<!-- <link rel="stylesheet" type="text/css" href="%%app_resources%%/test.css"> -->
+
+<div name="variables" style="margin-left: 1em; margin-right: 1em">
+
+  <p align="center" class="pageTitle">Paleobiology Database Web Application Test Page and Documentation</p>
+
+  <h3>Variables</h3>
+  
+  <p>The following variables can be included anywhere in the web application HTML file. Text
+  substitution is done on the file at the server, before it is sent to the browser. Therefore, the
+  variables can appear literally anywhere: in a tag, in a comment, in Javascript code, etc. When
+  you use them in code, you should make sure to enclose each variable in quotes so that it appears
+  to the Javascript engine as a string literal. It is often useful to set these variables at the
+  top of the file, using one of the following techniques:</p>
+
+  <p class="code" style="margin-left: 20px">
+  &lt;script language="JavaScript" type="text/javascript"&gt; <br>
+  var user_name = '%%user_name%&#37;'; <br>
+  var data_url = '%%data_url%&#37;'; <br>
+  &lt;/script&gt;
+  </p>
+
+  <p class="code" style="margin-left: 20px">
+  &lt;script language="JavaScript" type="text/javascript"&gt; <br>
+  initMyApp('%%user_name%&#37;', '%%data_url%&#37;'); <br>
+  &lt;/script&gt; <br>
+  &lt;!-- The initMyApp() function can be placed later in the HTML file, or else in a separate
+  javascript file. --&gt;
+
+  </p>
+
+  <p>Try logging in to Classic and reloading this page, then log out and reload again. You
+  will see the values of the variables change.</p>
+  
+  <table class="datatable">
+    
+    <tr><th>Variable&nbsp;name</th>
+        <th>Current&nbsp;value</th>
+        <th>Description</th></tr>
+	
+    <tr><td class="code">%%data_url%&#37;</td>
+        <td class="value">%%data_url%%</td>
+        <td class="desc"><p>The base URL for API requests made by this web
+        application. For example:</p>
+	<p class="example">&lt;script language="JavaScript" type="text/javascript"&gt;
+    var data_service_url = '%%data_url%&#37;';&lt;/script&gt;</p>
+	<p class="desc">If you put this at the top of your file, you can then use the variable
+	  <span class="code">data_service_url</span> in your javascript code to construct URL arguments to jQuery,
+          XMLHttpRequest, or whatever mechanism you use make data service requests.
+	</td></tr>
+    <tr><td class="code">%%test_data_url%&#37;</td>
+        <td class="value">%%test_data_url%%</td>
+        <td class="desc">The base URL to use if this web application needs to call the test API
+	instead of, or in addition to, the production one.</td></tr>
+    <tr><td class="code">%%classic_url%&#37;</td>
+        <td class="value">%%classic_url%%</td>
+        <td class="desc"><p>The base URL for links to web pages in the Classic application. All such
+	request URLs must continue with the name of the subroutine to be called. Arguments can
+        be included as well. For example:</p>
+	<p class="code"><a href="%%classic_url%%/basicTaxonInfo?taxon_no=69296">href=&quot;%%classic_url%&#37;/basicTaxonInfo?taxon_no=69296&quot;</a></p></td></tr>
+    <tr><td class="code">%%app_resources%&#37;</td>
+        <td class="value">%%app_resources%%</td>
+	<td class="desc"><p>The base URL for javascript, css, or other files included from the application directory for
+        this web app. In other words, any files from the same directory as this page can be
+        included by using this URL followed by the file name. For example:</p>
+	<p class="code">&lt;script src="%%app_resources%&#37;/test.js" language="JavaScript" type="text/javascript"&gt;&lt;/script&gt;</p></td>
+      </tr>
+    <tr><td class="code">%%common_resources%&#37;</td>
+        <td class="value">%%common_resources%%</td>
+	<td class="desc">The base URL for javascript, css, or other files included from the common directory for
+        Paleobiology Database web app resources. The best way to find what files are available is to look
+        at the HTML code for the existing web apps.</td></tr>
+    <tr><td class="code">%%user_name%&#37;</td>
+        <td class="value">%%user_name%%</td>
+	<td class="desc">The name of the user who is executing this app, or the empty
+        string if the user is not logged in.</td></tr>
+    <tr><td class="code">%%user_reversed%&#37;</td>
+        <td class="value">%%user_reversed%%</td>
+	<td class="desc">The same as <span class="code">%%user_name%&#37;</span>, but with last
+        name first.</td></tr>
+    <tr><td class="code">%%user_role%&#37;</td>
+        <td class="value">%%user_role%%</td>
+	<td class="desc"><p>The database role for the user who is executing this app. The
+        value will be one of the following:</p>
+	<table class="valuetable">
+	  <tr><td class="code">authorizer</td>
+	      <td class="desc">The user is an authorizer</td></tr>
+	  <tr><td class="code">enterer</td>
+	      <td class="desc">The user is an enterer</td></tr>
+	  <tr><td class="code">student</td>
+	      <td class="desc">The user is a student enterer</td></tr>
+	  <tr><td class="code">guest</td>
+	      <td class="desc">The user is logged in but is not a database member, or is a member who does not have
+		an assigned authorizer</td></tr>
+          <tr><td class="code">anonymous</td>
+	      <td class="desc">The user is not logged in, and is executing this app anonymously</td></tr>
+	</table>
+	</td></tr>
+    <tr><td class="code">%%is_member%&#37;</td>
+        <td class="value">%%is_member%%</td>
+	<td class="desc">Has the value 1 if the user is a database member, 0 otherwise.</td></tr>
+     <tr><td class="code">%%is_loggedin%&#37;</td>
+        <td class="value">%%is_loggedin%%</td>
+	<td class="desc">Has the value 1 if the user is logged in, 0 otherwise.</td></tr>
+     <tr><td class="code">%%is_admin%&#37;</td>
+        <td class="value">%%is_admin%%</td>
+	<td class="desc">Has the value 1 if the user is a database administrator, 0
+        otherwise. Note that this is separate from the user's database role.</td></tr>
+   <tr><td class="code">%%enterer_name%&#37;</td>
+        <td class="value">%%enterer_name%%</td>
+	<td class="desc">The name of the database member who is executing this app, or the empty
+        string if the user is not logged in or not a member. This is the name as known to the
+        Classic environment, which may not always be the same as <span class="code">%%user_name%&#37;</span>.</td></tr>
+    <tr><td class="code">%%enterer_reversed%&#37;</td>
+        <td class="value">%%enterer_reversed%%</td>
+	<td class="desc">The same as <span class="code">%%enterer_name%&#37;</span>, but with last
+        name first.</td></tr>
+    <tr><td class="code">%%enterer_id%&#37;</td>
+        <td class="value">%%enterer_id%%</td>
+	<td class="desc">The identifier corresponding to the user, for use in API calls. This can
+	  be used, for example, to retrieve all records entered by the user.</td></tr>
+    <tr><td class="code">%%authorizer_name%&#37;</td>
+        <td class="value">%%authorizer_name%%</td>
+	<td class="desc">The name of the user's authorizer, if they have one, or their own name
+        if they are an authorizer. If the user is not a database member or is not logged in, the
+        value will be the empty string.</td></tr>
+    <tr><td class="code">%%authorizer_reversed%&#37;</td>
+        <td class="value">%%authorizer_reversed%%</td>
+	<td class="desc">The same as <span class="code">%%authorizer_name%&#37;</span>, but with last
+        name first.</td></tr>
+    <tr><td class="code">%%authorizer_id%&#37;</td>
+        <td class="value">%%authorizer_id%%</td>
+	<td class="desc">The identifier corresponding to the user's authorizer, for use in API calls. This can
+	  be used, for example, to retrieve all records authorized by that person.</td></tr>
+   <tr><td class="code">%%unknown_variable%&#37;</td>
+        <td class="value">%%unknown_variable%%</td>
+	<td class="desc">This is the value that is returned if you misspell a variable name.</td></tr>
+    </table>
+
+
+    <h3>Settings</h3>
+
+    <p>You can also indicate to Classic that it should execute this application in particular
+    ways. The following settings must appear in the first 1000 characters of the HTML file in order
+    to be recognized. It is usually most convenient to put them in an HTML comment at the top of
+    the file.</p>
+
+   <table class="datatable">
+    
+    <tr><th>Setting&nbsp;</th>
+        <th>Effect</th></tr>
+	
+    <tr><td class="code">REQUIRES_LOGIN=1</td>
+        <td class="desc">If a user tries to execute this application and is not logged in,
+	they will be redirected to the login page. When they log in, they will be redirected
+        back to this application.</td></tr>
+
+    <tr><td class="code">REQUIRES_MEMBER=1</td>
+        <td class="desc">If a user tries to execute this application, they will be redirected
+	to the login page unless they are already logged in <em>and are a database member</em>.
+	This means they must be either an authorizer, an enterer, or a student.</td></tr>
+
+      </table>
+</div>
