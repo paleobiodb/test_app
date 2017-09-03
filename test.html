@@ -171,7 +171,14 @@
 	  be used, for example, to retrieve all records authorized by that person.</td></tr>
    <tr><td class="code">%%unknown_variable%&#37;</td>
         <td class="value">%%unknown_variable%%</td>
-	<td class="desc">This is the value that is returned if you misspell a variable name.</td></tr>
+   	<td class="desc">This is an example of a bad variable name. These do not get substituted.</td></tr>
+   <tr><td class="code">%%errors%&#37;</td>
+        <td class="value">%%errors%%</td>
+	<td class="desc">If any errors have occurred during the substitution process, this
+        variable reports the error messages. Otherwise, it will be empty. Consequently, if
+	you are going to use it you should place it at the end of the HTML file where it will
+	be able to report any substitution errors. If there
+	are multiple error messages, they will be separated by semicolons.</td></tr>	
     </table>
 
 
