@@ -75,6 +75,13 @@
         <th>Current&nbsp;value</th>
         <th>Description</th></tr>
 	
+    <tr><td class="code">%%params%&#37;</td>
+        <td class="value">%%params%%</td>
+	<td class="desc">The URL parameters as a Javascript object.</td></tr>
+    <tr><td class="code">%%param[foo]%&#37;</td>
+        <td class="value">%%param[foo]%%</td>
+	<td class="desc">The value of a particular parameter, as a Javascript value. If the
+	  parameter was not present in the request, the value will be undefined.
     <tr><td class="code">%%data_url%&#37;</td>
         <td class="value">%%data_url%%</td>
         <td class="desc"><p>The base URL for API requests made by this web
@@ -110,12 +117,20 @@
     <tr><td class="code">%%user_name%&#37;</td>
         <td class="value">%%user_name%%</td>
 	<td class="desc">The name of the user who is executing this app, or the empty
-        string if the user is not logged in.</td></tr>
-    <tr><td class="code">%%user_reversed%&#37;</td>
-        <td class="value">%%user_reversed%%</td>
-	<td class="desc">The same as <span class="code">%%user_name%&#37;</span>, but with last
-        name first.</td></tr>
-    <tr><td class="code">%%user_role%&#37;</td>
+	  string if the user is not logged in.</td></tr>
+    <tr><td class="code">%%user_email %&#37;</td>
+      <td class="value">%%user_email%%</td>
+      <td class="desc">The email address of the user who is executing
+	this app, or the empty string if the user is not logged in.</td></tr>
+    <tr><td class="code">%%user_institution%&#37;</td>
+        <td class="value">%%user_institution%%</td>
+	<td class="desc">The institution of the user who is executing this app, or the empty
+	string if the user is not logged in.</td></tr>
+    <tr><td class="code">%%user_orcid%&#37;</td>
+        <td class="value">%%user_orcid%%</td>
+	<td class="desc">The ORCID of the user who is executing this app, or the empty
+	string if the user is not logged in or has not entered an ORCID.</td></tr>
+     <tr><td class="code">%%user_role%&#37;</td>
         <td class="value">%%user_role%%</td>
 	<td class="desc"><p>The database role for the user who is executing this app. The
         value will be one of the following:</p>
